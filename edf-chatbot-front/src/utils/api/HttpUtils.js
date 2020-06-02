@@ -1,6 +1,26 @@
 import TLogs from "../TLogs";
+import TString from "../TString";
 
 let HttpUtils = function () {
+
+    function stringifyParameters(parameters) {
+        let result = '';
+
+        for (let key in parameters) {
+            if (TString.isNull(parameters[key])) {
+                continue;
+            }
+            if (result !== '')
+                result += '&';
+            result += key + '=' + parameters[key];
+        }
+        result = (result === '' ? result : '?' + result);
+        return result;
+    }
+
+    function createApiUrl(domainUrl, urlParameters) {
+        return (domainUrl ? domainUrl : '') + (urlParameters ? urlParameters : '');
+    }
 
     function triggerResultCallback(data, response, cbSuccess, cbError) {
         const status = response.status;
@@ -29,14 +49,14 @@ let HttpUtils = function () {
         });
     }
 
-    function httpData(type, url, api, headers, data, cbSuccess, cbError) {
+    function httpData(type, url, headers, data, cbSuccess, cbError) {
         if (!headers)
             headers = {};
         TLogs.p("[API_" + type + "]", url, data);
-        fetch(url, {
+        let urlParameters = stringifyParameters(data);
+        fetch(createApiUrl(url, urlParameters), {
             method: type,
-            headers: headers,
-            body: data
+            headers: headers
         }).then(response => {
             handleHttpResult(response, cbSuccess, cbError);
         }).catch(error => {
