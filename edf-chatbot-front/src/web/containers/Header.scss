@@ -1,0 +1,31 @@
+.App-header {
+  background-color: #FFFFFF;
+  height: 60px;
+}
+
+.content-width {
+  width: 80em;
+  max-width: 90%;
+  margin: auto;
+  height: inherit;
+}
+
+#edf-energy-logo {
+  height: 95%;
+}
+
+img {
+  vertical-align: middle;
+}
+
+#information-container {
+  float: right;
+  height: inherit;
+}
+
+#information-container .date {
+  display: inline-block;
+  font-size: 25px;
+  line-height: 50px;
+  color: #9B9B9B;
+}
