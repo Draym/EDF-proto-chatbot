@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.andres_k</groupId>
-    <artifactId>web</artifactId>
+    <artifactId>edf-chatbot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>edf-chatbot-back</name>
     <description>API for edf chatbot prototype</description>

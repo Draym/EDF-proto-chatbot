@@ -1,9 +1,8 @@
 import HttpUtils from "../api/HttpUtils";
-import TLogs from "../TLogs";
 
 class ThermostatManager {
 
-    static executeAction(action, sendMessage) {
+    static executeAction(action, sendMessage, updateThermostat) {
         if (action.api && action.value) {
             sendMessage("We are treating your demand...");
 
@@ -12,9 +11,10 @@ class ThermostatManager {
                 action: action.api
             }, function (result) {
                 sendMessage("We have set the " + action.name + " to " + action.value);
+                updateThermostat(action.name, action.value);
             }, function (result) {
                 sendMessage("A problem has been encountered, your thermostat has not been modified");
-            })
+            });
         } else {
             sendMessage(action.messages);
         }

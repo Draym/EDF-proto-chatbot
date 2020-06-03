@@ -1,6 +1,10 @@
 class ContextStorage {
     static GET(key) {
-        return localStorage.getItem(key);
+        let item = localStorage.getItem(key);
+        if (item) {
+            return JSON.parse(item);
+        }
+        return undefined;
     }
 
     static CLEAR(key) {
@@ -8,6 +12,9 @@ class ContextStorage {
     }
 
     static SET(key, data) {
+        if (!data) {
+            return;
+        }
         localStorage.setItem(key, (typeof data === 'object' ? JSON.stringify(data) : data));
     }
 }

@@ -113,7 +113,6 @@ class MsgInterpretation {
         /** MANAGE ENTER VALUE for last step **/
         if (this.step && DBotTree[this.step] && DBotTree[this.step].result.isEnd) {
             let value = this.finalActions[DBotTree[this.step].result.next](message);
-            console.log("VAL: ", value);
             if (value && (!DBotTree[this.step].result.max || value <= DBotTree[this.step].result.max)) {
                 action.name = DBotTree[this.step].id;
                 action.isValid = true;
